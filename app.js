@@ -1,11 +1,9 @@
-let express = require('express')
+let http = require('http');
 
-let app = express()
+http.createServer((request, Response) => {
+  Response.writeHead(200, {'Content-Type': 'text/plain'});
 
-app.get('/', function (req, res) {
-  res.send('tezt')
-})
+  Response.end('hello')
+}).listen(8888);
 
-app.listen(3008, function() {
-    console.log('3008')
-})
+console.log('888')
