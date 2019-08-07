@@ -6,7 +6,7 @@
 ### Development
 
 ```bash
-$ npm i
-$ npm run dev
+$ npm install
+$ npm start
 $ open http://localhost:7001/
 ```
