@@ -7,6 +7,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.3.1",
+        "consola": "^2.10.1",
         "cookie-parser": "~1.4.4",
         "debug": "~2.6.9",
         "ejs": "^2.6.2",
@@ -14,8 +15,10 @@
         "http-errors": "~1.6.3",
         "jQuery": "^1.7.4",
         "jsdom": "^15.1.1",
+        "mongoose": "^5.6.9",
         "morgan": "~1.9.1",
         "pug": "2.0.0-beta11",
-        "sass": "^1.22.9"
+        "sass": "^1.22.9",
+        "yargs": "^13.3.0"
     }
 }
