@@ -8,7 +8,9 @@
  
  exports.connect = () => {
    
-  mongoose.connect(config.MONGODB.url)
+  mongoose.connect(config.MONGODB.url, {
+    useNewUrlParser: true
+  })
 
   mongoose.connection.on('error', error => consola.warn('MongoDB 连接失败!', error))
 
