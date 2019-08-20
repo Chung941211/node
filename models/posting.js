@@ -1,9 +1,6 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Scheam;
 
-const defalut = {
-
-}
 
 const posingScheam = new Scheam({
 
@@ -14,4 +11,6 @@ const posingScheam = new Scheam({
     id: { type: Number }
 })
 
-module.export = mongoose.model('posing', posingScheam)
+const Posing = mongoose.model('posing', posingScheam)
+
+export default Posing
