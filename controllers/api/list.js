@@ -1,10 +1,8 @@
-import postingModel from '../../models/posting'
-import base from '../../middlewares/base';
-console.log(postingModel)
-class posting extends base {
-
+const postingModel = require('../../models/posting')
+// import base from '../../middlewares/base';
+class Posting {
     constructor () {
-        super();
+        // super();
     }
 
     async add (req, res, next) {
@@ -15,7 +13,7 @@ class posting extends base {
             content: '测试内容',
             id: 1
         }
-
+        console.log(addInfo)
         try {
             const article = new postingModel(addInfo)
             const articleSave = await article.save()
@@ -27,3 +25,4 @@ class posting extends base {
         }
     }
 }
+exports.Posting = new Posting()
