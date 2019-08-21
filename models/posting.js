@@ -1,8 +1,6 @@
-import mongoose from 'mongoose'
-const Schema = mongoose.Scheam;
+const { mongoose } = require('../common/server');
 
-
-const posingScheam = new Scheam({
+const posingSchema = new mongoose.Schema({
 
     title: { type: String, defalut: ''},
 
@@ -11,6 +9,6 @@ const posingScheam = new Scheam({
     id: { type: Number }
 })
 
-const Posing = mongoose.model('posing', posingScheam)
+const Posing = mongoose.model('posing', posingSchema)
 
-export default Posing
+exports.Posing = Posing
