@@ -1,4 +1,4 @@
-const postingModel = require('../../models/posting')
+const postingModel = require('../../models/posting').Posing
 // import base from '../../middlewares/base';
 class Posting {
     constructor () {
@@ -9,20 +9,28 @@ class Posting {
         
         const addInfo = {
             
-            title: '测试',
-            content: '测试内容',
-            id: 1
+            title: '测试2',
+            content: '测试内容2',
+            id: 2
         }
-        console.log(addInfo)
         try {
             const article = new postingModel(addInfo)
-            const articleSave = await article.save()
+            const articleSave = await article.save((err, fluffy) => {
+                if (err) {
+                    console.log(err)
+                }
+            })
             res.send(articleSave)
         } catch (err) {
             res.send({
-                status: 0
+                status: 1001,
+                msg: err
             })
         }
     }
+
+    async list (req, res, next) {}
+
+    async content (req, res, next) {}
 }
 exports.Posting = new Posting()
