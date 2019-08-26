@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const Posting = require('../controllers/api/list')
+const Posting = require('../controllers/api/list').Posting
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
-router.get('/list', Posting.add)
+router.get('/list', Posting.list)
+router.get('/list/content', Posting.content)
+router.post('/list/add', Posting.add)
 
 module.exports = router;
