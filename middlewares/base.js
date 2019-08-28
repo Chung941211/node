@@ -8,7 +8,7 @@ class base {
     this.text = '1'
   }
 
-  con () {
+  responseClient () {
     return this.text
   }
 }
