@@ -1,8 +1,6 @@
 const postingModel = require('../../models/posting').Posing
-// import base from '../../middlewares/base';
 class Posting {
     constructor () {
-        // super();
     }
 
     async add (req, res, next) {
@@ -29,8 +27,22 @@ class Posting {
         }
     }
 
-    async list (req, res, next) {}
+    async list (req, res, next) {
+        const { limit = 20 } = req.query    
+        
+        let filter = {}, bySort = {}
 
-    async content (req, res, next) {}
+        console.log(filter)
+        res.send(filter)
+        const listData = await article
+        .find({})
+        .sort(bySort)
+
+
+    }
+
+    async content (req, res, next) {
+
+    }
 }
 exports.Posting = new Posting()
