@@ -1,6 +1,7 @@
 const postingModel = require('../../models/posting').Posing
-class Posting {
+class Posting extends base {
     constructor () {
+        super()
     }
 
     async add (req, res, next) {
@@ -12,13 +13,13 @@ class Posting {
             id: 2
         }
         try {
-            const article = new postingModel(addInfo)
-            const articleSave = await article.save((err, fluffy) => {
+            const posting = new postingModel(addInfo)
+            const postingSave = await posting.save((err, fluffy) => {
                 if (err) {
                     console.log(err)
                 }
             })
-            res.send(articleSave)
+            res.send(postingSave)
         } catch (err) {
             res.send({
                 status: 1001,
@@ -30,14 +31,23 @@ class Posting {
     async list (req, res, next) {
         const { limit = 20 } = req.query    
         
-        let filter = {}, bySort = {}
+        let filter = {}
+        let options = {
+            limit,
+            sort: {}
+        }
+        let fields = {
+            title: ''
+        }
+        postingModel.find(filter, fields, options, (error, result) => {
+            try {
+                if (error) {
 
-        console.log(filter)
-        res.send(filter)
-        const listData = await article
-        .find({})
-        .sort(bySort)
+                }
+            } catch {
 
+            }
+        })
 
     }
 
