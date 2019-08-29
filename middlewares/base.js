@@ -5,11 +5,14 @@
 class base {
   
   constructor () {
-    this.text = '1'
   }
 
-  responseClient () {
-    return this.text
+  responseClient (res, code = 500, status = 1000, message = '服务端异常，请与管理员联系', data = {}) {
+    res.status{code}.json({
+      code,
+      message,
+      data
+    })
   }
 }
 
