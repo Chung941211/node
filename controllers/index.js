@@ -1,4 +1,4 @@
-const List = require('../models/list');
+// const List = require('../models/list');
 
 exports.home = ((req, res, next) => {
   res.render('index', {

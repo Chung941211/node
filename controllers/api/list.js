@@ -1,30 +1,21 @@
 const postingModel = require('../../models/posting').Posing
-class Posting extends base {
+const response = require('../../common/utils').response
+class Posting {
     constructor () {
-        super()
     }
 
     async add (req, res, next) {
         
         const addInfo = {
-            
-            title: '测试2',
-            content: '测试内容2',
-            id: 2
+
         }
+        const posting = new postingModel(addInfo)
+        console.log(posting)
         try {
-            const posting = new postingModel(addInfo)
-            const postingSave = await posting.save((err, fluffy) => {
-                if (err) {
-                    console.log(err)
-                }
-            })
-            res.send(postingSave)
-        } catch (err) {
-            res.send({
-                status: 1001,
-                msg: err
-            })
+            const postingSave = await posting.save()
+            response(res, 1000, '新增成功')
+        } catch (error) {
+            response(res, 1001, error)
         }
     }
 
@@ -36,16 +27,14 @@ class Posting extends base {
             limit,
             sort: {}
         }
-        let fields = {
-            title: ''
-        }
-        postingModel.find(filter, fields, options, (error, result) => {
-            try {
-                if (error) {
-
-                }
-            } catch {
-
+        // let fields = {
+        //     title: 1
+        // }
+        postingModel.find(filter, 'title', options, (error, result) => {
+            if (error) {
+                response(res, 1001, error)
+            } else {
+                response(res, 1000, 'ok', result)
             }
         })
 
