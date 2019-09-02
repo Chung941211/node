@@ -10,7 +10,6 @@ class Posting {
 
         }
         const posting = new postingModel(addInfo)
-        console.log(posting)
         try {
             const postingSave = await posting.save()
             response(res, 1000, '新增成功')
