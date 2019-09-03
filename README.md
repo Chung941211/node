@@ -1,6 +1,6 @@
 # forum
 
-基于Node.js 和 MongoDB 开发的一个简单发帖系统
+基于Node.js 和 MongoDB 开发的一个发帖系统
 
 
 ### Development

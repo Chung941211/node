@@ -1,4 +1,4 @@
-// const List = require('../models/list');
+const postingModel = require('../models/posting').Posing
 
 exports.home = ((req, res, next) => {
 
