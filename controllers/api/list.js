@@ -11,9 +11,10 @@ class Posting {
         }
         const posting = new postingModel(addInfo)
         try {
-            const postingSave = await posting.save()
+            await posting.save()
             response(res, 1000, '新增成功')
-        } catch (error) {
+        }
+        catch (error) {
             response(res, 1001, error)
         }
     }
@@ -26,19 +27,38 @@ class Posting {
             limit,
             sort: {}
         }
-        // let fields = {
-        //     title: 1
-        // }
-        postingModel.find(filter, 'title', options, (error, result) => {
-            if (error) {
-                response(res, 1001, error)
-            } else {
-                response(res, 1000, 'ok', result)
-            }
-        })
+        let fields = {
+            title: 1
+        }
+        try { 
+            const result = await postingModel.find(filter, {}, options)
+            response(res, 1000, 'ok', result)
+        }
+        catch (error) {
+            response(res, 1001, error)
+        }
 
     }
 
+    async deletePosting (req, res, next) {
+        const { id } = req.body
+        if (id === '') {
+            response(res, 1001, '文字id为空')
+            return
+        }
+        try { 
+            const result = postingModel.deleteMany({id: id})
+            if (result.n === 1) {
+                response(res, 1001, '找不到相关id')
+            } else {
+                response(res, 1000, '删除成功')
+            }
+        }
+        catch (error) {
+            response(res, 1001, error)
+        }
+        
+    }
     async content (req, res, next) {
 
     }

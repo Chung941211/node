@@ -11,13 +11,13 @@ exports.home = ((req, res, next) => {
       sort: {}
   }
 
-  postingModel.find(filter, 'title', options, (error, result) => {
+  postingModel.find(filter, {}, options, (error, result) => {
       if (!error) {
         data = result
       }
-  })
-  res.render('index', {
-      title: '首页',
-      data
+      res.render('index', {
+        title: '首页',
+        data
+    })
   })
 });
