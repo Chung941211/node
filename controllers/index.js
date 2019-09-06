@@ -18,6 +18,12 @@ exports.home = ((req, res, next) => {
       res.render('index', {
         title: '首页',
         data
-    })
+      })
+  })
+});
+
+exports.detail = ((req, res, next) => {
+  res.render('detail', {
+    title: '详情页'
   })
 });
