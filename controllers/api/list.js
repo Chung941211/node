@@ -47,11 +47,11 @@ class Posting {
             return
         }
         try { 
-            const result = postingModel.deleteMany({id: id})
+            const result = await postingModel.deleteMany({id: id})
             if (result.n === 1) {
-                response(res, 1001, '找不到相关id')
-            } else {
                 response(res, 1000, '删除成功')
+            } else {
+                response(res, 1001, '找不到相关id')
             }
         }
         catch (error) {
