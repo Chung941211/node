@@ -12,7 +12,7 @@ const posingSchema = new Schema({
 
     create_time: { type: Date, default: Date.now }, // 创建日期
 
-    update_time: { type: Date, defalut: Date.now }
+    update_time: { type: Date, defalut: Date.now } // 更新时间
 })
 
 posingSchema.plugin(autoIncrement.plugin, {
