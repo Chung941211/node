@@ -5,9 +5,12 @@ class Posting {
     }
 
     async add (req, res, next) {
-        
+        const { title, content, description } = req.bodys
         const addInfo = {
-
+            content,
+            title,
+            description,
+            author: 'Chung'
         }
         const posting = new postingModel(addInfo)
         try {

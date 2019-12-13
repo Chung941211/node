@@ -21,9 +21,3 @@ exports.home = ((req, res, next) => {
       })
   })
 });
-
-exports.detail = ((req, res, next) => {
-  res.render('detail', {
-    title: '详情页'
-  })
-});
