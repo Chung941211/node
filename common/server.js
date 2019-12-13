@@ -17,7 +17,6 @@ exports.connect = () => {
 
   mongoose.connection.on('error', error => consola.warn('MongoDB 连接失败!', error))
 
-  mongoose.connection.on('open', () => consola.ready('MongoDB 连接成功'))
 
   return mongoose
 }
