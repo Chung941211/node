@@ -3,42 +3,46 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">新增/编辑文章</h1>
+            <h1 class="h2">
+                <% if(data) { %>编辑
+                    <% } else { %>新增
+                        <% } %>文章</h1>
         </div>
 
-        <h2>文章标题</h2>
-        <div class="alert alert-primary" role="alert">创建时间：
-            <%- data['create_time'] %>
-        </div>
-        <form>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">文章标题</span>
-                </div>
-                <input type="text" value="<%- data['title'] %>" name="title" class="form-control" placeholder="标题" aria-label="Username" aria-describedby="basic-addon1">
+        <h2>文章标题
+        </h2>
+        <% if (data) { %>
+            <div class="alert alert-primary" role="alert">创建时间：
+                <%- data['time'] %>
             </div>
+            <% } %>
+                <form>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">文章标题</span>
+                        </div>
+                        <input type="text" value="<%- data['title'] %>" name="title" class="form-control" placeholder="标题" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">简介</span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">简介</span>
+                        </div>
+                        <input type="text" value="<%- data['description'] %>" name="description" class="form-control" placeholder="标题" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">文章内容</span>
+                        </div>
+                        <textarea class="form-control" name="content" aria-label="With textarea" style="height: 500px;"><%- data['content'] %></textarea>
+
+
+                    </div>
+                </form>
+                <div class="text-center" style="margin-top:  40px;">
+                    <button id="add" class="btn btn-sm btn-outline-secondary" style="width: 200px;">保存</button>
                 </div>
-                <input type="text" value="<%- data['description'] %>" name="description" class="form-control" placeholder="标题" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">文章内容</span>
-                </div>
-                <textarea class="form-control" name="content" aria-label="With textarea" style="height: 500px;">
-                        <%- data['content'] %>
-                </textarea>
-
-
-            </div>
-        </form>
-        <div class="text-center" style="margin-top:  40px;">
-            <button id="add" class="btn btn-sm btn-outline-secondary" style="width: 200px;">保存</button>
-        </div>
 
     </main>
 
