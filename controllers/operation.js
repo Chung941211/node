@@ -1,20 +1,25 @@
 const postingModel = require('../models/posting').Posing
+const time = require('../common/utils').handleTime
 
 exports.add = (async (req, res, next) => {
   const { id } = req.query
-  let data = null
+
+  let reply = null
+  let data  = null
+
+
   if (id && id !== '') {
-    data = await postingModel.findOne({id}, function(error, result) {
-      if (error) {
-        return next(error)
-      }
-      if (result) {
-        return result
-      }
-    })
+    reply = await postingModel.findOne({ id }).exec();
   }
+
+
   res.render('detail', {
       title: '增加文章',
-      data
+      data: {
+        title: reply['title'] || '',
+        time: time(reply['create_time']) || '',
+        description: reply['description'] || '',
+        content: reply['content'] || ''
+      }
   })
 });

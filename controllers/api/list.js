@@ -34,7 +34,7 @@ class Posting {
             title: 1
         }
         try { 
-            const result = await postingModel.find(filter, {}, options)
+            const result = await postingModel.find(filter, {}, options).exen();
             response(res, 1000, 'ok', result)
         }
         catch (error) {
@@ -50,7 +50,7 @@ class Posting {
             return
         }
         try { 
-            const result = await postingModel.deleteMany({id: id})
+            const result = await postingModel.deleteMany({id: id}).exen();
             if (result.n === 1) {
                 response(res, 1000, '删除成功')
             } else {
@@ -62,8 +62,25 @@ class Posting {
         }
         
     }
-    async content (req, res, next) {
+    async updatePosting (req, res, next) {
+        const { title, content, description, id } = req.bodys
+        const addInfo = {
+            content,
+            title,
+            description
+        }
 
+        if (id === '') {
+            response(res, 1001, '找不到文字id')
+            return
+        }
+        try {
+            await postingModel.findByIdAndUpdate({id}).exen();
+            response(res, 1000, '删除成功')
+        }
+        catch (error) {
+            response(res, 1001, error)
+        }
     }
 }
 exports.Posting = new Posting()
