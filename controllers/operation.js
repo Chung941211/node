@@ -20,6 +20,7 @@ exports.add = (async (req, res, next) => {
         time: time(reply['create_time']) || '',
         description: reply['description'] || '',
         content: reply['content'] || ''
-      }
+      },
+      id
   })
 });

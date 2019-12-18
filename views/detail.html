@@ -41,7 +41,10 @@
                     </div>
                 </form>
                 <div class="text-center" style="margin-top:  40px;">
-                    <button id="add" class="btn btn-sm btn-outline-secondary" style="width: 200px;">保存</button>
+                    <% if(data) { %><button id="edit" class="btn btn-sm btn-outline-secondary" style="width: 200px;">编辑</button>
+                        <% } else { %>
+                            <button id="add" class="btn btn-sm btn-outline-secondary" style="width: 200px;">保存</button>
+                            <% } %>
                 </div>
 
     </main>
@@ -50,8 +53,30 @@
         $(document).ready(function() {
             $('#add').click(function() {
                 var obj = $('form').serializeArray()
-                $.post('/api/list/add', obj.map(item => item), function() {
-                    alert('添加成功！')
+                $.post('/api/list/add', obj.map(item => item), function(data) {
+                    if (data.status === 1000) {
+                        alert('添加成功！')
+                    } else {
+                        alert('添加失败！')
+                    }
+
+                })
+
+            })
+
+            $('#edit').click(function() {
+                var obj = $('form').serializeArray()
+                var setData = obj.map(item => item)
+                setData = [...setData, {
+                    name: 'id',
+                    value: "<%- id %>"
+                }]
+                $.post('/api/list/updatePosting', setData, function(data) {
+                    if (data.status === 1000) {
+                        alert('修改成功！')
+                    } else {
+                        alert('修改失败！')
+                    }
                 })
 
             })

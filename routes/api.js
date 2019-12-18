@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
 router.get('/list', Posting.list)
 router.post('/list/add', Posting.add)
 router.post('/list/delete', Posting.deletePosting)
-router.get('/list/updatePosting', Posting.updatePosting)
+router.post('/list/updatePosting', Posting.updatePosting)
+router.get('/list/test', Posting.test)
+
 
 module.exports = router;

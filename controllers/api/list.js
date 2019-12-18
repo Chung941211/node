@@ -5,7 +5,7 @@ class Posting {
     }
 
     async add (req, res, next) {
-        const { title, content, description } = req.bodys
+        const { title, content, description } = req.body
         const addInfo = {
             content,
             title,
@@ -34,7 +34,7 @@ class Posting {
             title: 1
         }
         try { 
-            const result = await postingModel.find(filter, {}, options).exen();
+            const result = await postingModel.find(filter, {}, options).exec();
             response(res, 1000, 'ok', result)
         }
         catch (error) {
@@ -50,7 +50,7 @@ class Posting {
             return
         }
         try { 
-            const result = await postingModel.deleteMany({id: id}).exen();
+            const result = await postingModel.deleteMany({id: id}).exec();
             if (result.n === 1) {
                 response(res, 1000, '删除成功')
             } else {
@@ -63,7 +63,7 @@ class Posting {
         
     }
     async updatePosting (req, res, next) {
-        const { title, content, description, id } = req.bodys
+        const { title, content, description, id } = req.body
         const addInfo = {
             content,
             title,
@@ -71,16 +71,44 @@ class Posting {
         }
 
         if (id === '') {
-            response(res, 1001, '找不到文字id')
+            response(res, 1001, '找不到文章id')
             return
         }
         try {
-            await postingModel.findByIdAndUpdate({id}).exen();
-            response(res, 1000, '删除成功')
+            await postingModel.findOneAndUpdate({id : id}, addInfo);
+            response(res, 1000, '更新成功')
         }
         catch (error) {
             response(res, 1001, error)
         }
+    }
+
+    test (req, res, next) {
+        res.send({
+            selectedsubreddit: 'frontend',
+            postsBySubreddit: {
+              frontend: {
+                isFetching: true,
+                didInvalidate: false,
+                items: []
+              },
+              reactjs: {
+                isFetching: false,
+                didInvalidate: false,
+                lastUpdated: 1439478405547,
+                items: [
+                  {
+                    id: 42,
+                    title: 'Confusion about Flux and Relay'
+                  },
+                  {
+                    id: 500,
+                    title: 'Creating a Simple Application Using React JS and Flux Architecture'
+                  }
+                ]
+              }
+            }
+          })
     }
 }
 exports.Posting = new Posting()
