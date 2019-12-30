@@ -12,15 +12,22 @@ exports.add = (async (req, res, next) => {
     reply = await postingModel.findOne({ id }).exec();
   }
 
-
-  res.render('detail', {
-      title: '增加文章',
-      data: {
-        title: reply['title'] || '',
-        time: time(reply['create_time']) || '',
-        description: reply['description'] || '',
-        content: reply['content'] || ''
-      },
-      id
-  })
+  if (reply) {
+    res.render('detail', {
+        title: '增加文章',
+        data: {
+          title: reply['title'],
+          time: time(reply['create_time']),
+          description: reply['description'],
+          content: reply['content']
+        },
+        id
+    })
+  } else {
+    res.render('detail', {
+        title: '增加文章',
+        data: {},
+        id: ''
+    })
+  }
 });

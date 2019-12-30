@@ -85,6 +85,16 @@ class Posting {
 
     test (req, res, next) {
         res.send({
+            items: [
+                {
+                id: 42,
+                title: 'Confusion about Flux and Relay'
+                },
+                {
+                id: 500,
+                title: 'Creating a Simple Application Using React JS and Flux Architecture'
+                }
+            ],
             selectedsubreddit: 'frontend',
             postsBySubreddit: {
               frontend: {

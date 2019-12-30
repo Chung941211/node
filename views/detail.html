@@ -4,14 +4,14 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">
-                <% if(data) { %>编辑
+                <% if(id !== '') { %>编辑
                     <% } else { %>新增
                         <% } %>文章</h1>
         </div>
 
         <h2>文章标题
         </h2>
-        <% if (data) { %>
+        <% if (id !== '') { %>
             <div class="alert alert-primary" role="alert">创建时间：
                 <%- data['time'] %>
             </div>
@@ -57,7 +57,7 @@
                     if (data.status === 1000) {
                         alert('添加成功！')
                     } else {
-                        alert('添加失败！')
+                        alert(data.msg)
                     }
 
                 })
@@ -75,7 +75,7 @@
                     if (data.status === 1000) {
                         alert('修改成功！')
                     } else {
-                        alert('修改失败！')
+                        alert(data.msg)
                     }
                 })
 
